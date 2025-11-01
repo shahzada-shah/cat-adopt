@@ -123,7 +123,7 @@ export const AboutSection = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 pt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-8">
               {stats.map((stat, index) => {
                 const Icon = stat.icon;
                 return (
@@ -133,17 +133,17 @@ export const AboutSection = () => {
                       inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                     }`}
                   >
-                    <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-gray-200 relative overflow-hidden">
+                    <div className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-gray-200 relative overflow-hidden">
                       <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-gray-100 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                       <div className="relative z-10">
-                        <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center justify-between mb-2 sm:mb-3">
                           <div className="p-2 bg-gray-50 rounded-lg group-hover:bg-gray-100 transition-colors duration-300">
-                            <Icon className="w-5 h-5 text-gray-700" />
+                            <Icon className="w-4 sm:w-5 h-4 sm:h-5 text-gray-700" />
                           </div>
                         </div>
 
-                        <div className="text-4xl font-bold text-gray-900 mb-2 transition-transform duration-300 group-hover:scale-105">
+                        <div className="text-3xl sm:text-4xl font-bold text-gray-900 mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105">
                           {inView ? formatCounter(counters[index], index) : '0'}
                         </div>
 
