@@ -146,6 +146,7 @@ export const ContactsPage = () => {
                         onBlur={() => setFocusedField(null)}
                         placeholder="John Doe"
                         required
+                        autoComplete="off"
                         className="w-full px-4 py-2 text-sm bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-gray-900 focus:bg-white transition-all duration-300 outline-none"
                       />
                     </div>
@@ -164,6 +165,7 @@ export const ContactsPage = () => {
                         onBlur={() => setFocusedField(null)}
                         placeholder="+123 456 7890"
                         required
+                        autoComplete="off"
                         className="w-full px-4 py-2 text-sm bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-gray-900 focus:bg-white transition-all duration-300 outline-none"
                       />
                     </div>
@@ -183,6 +185,7 @@ export const ContactsPage = () => {
                       onBlur={() => setFocusedField(null)}
                       placeholder="your@email.com"
                       required
+                      autoComplete="off"
                       className="w-full px-4 py-2 text-sm bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-gray-900 focus:bg-white transition-all duration-300 outline-none"
                     />
                   </div>

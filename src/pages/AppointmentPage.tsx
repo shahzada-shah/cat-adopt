@@ -222,6 +222,7 @@ export const AppointmentPage = () => {
                         onBlur={() => setFocusedField(null)}
                         placeholder="Enter your full name"
                         required
+                        autoComplete="off"
                         className="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-gray-900 focus:bg-white transition-all duration-300 outline-none"
                       />
                     </div>
@@ -245,6 +246,7 @@ export const AppointmentPage = () => {
                         onBlur={() => setFocusedField(null)}
                         placeholder="+380 XX XXX XX XX"
                         required
+                        autoComplete="off"
                         className="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-gray-900 focus:bg-white transition-all duration-300 outline-none"
                       />
                     </div>
@@ -267,6 +269,7 @@ export const AppointmentPage = () => {
                         onFocus={() => setFocusedField('email')}
                         onBlur={() => setFocusedField(null)}
                         placeholder="your@email.com"
+                        autoComplete="off"
                         className="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-gray-900 focus:bg-white transition-all duration-300 outline-none"
                       />
                     </div>

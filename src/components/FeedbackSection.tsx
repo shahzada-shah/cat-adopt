@@ -82,14 +82,14 @@ export const FeedbackSection = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 3 : prev - 1));
-    setTimeout(() => setIsTransitioning(false), 600);
+    setTimeout(() => setIsTransitioning(false), 800);
   };
 
   const handleNext = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev >= testimonials.length - 3 ? 0 : prev + 1));
-    setTimeout(() => setIsTransitioning(false), 600);
+    setTimeout(() => setIsTransitioning(false), 800);
   };
 
   const visibleTestimonials = [
@@ -125,15 +125,16 @@ export const FeedbackSection = () => {
             {visibleTestimonials.map((testimonial, index) => (
               <div
                 key={`${testimonial.id}-${currentIndex}`}
-                className={`transform transition-all duration-700 ${
+                className={`transform transition-all duration-700 ease-out ${
                   inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 } ${
                   isTransitioning
-                    ? 'opacity-0 scale-95'
-                    : 'opacity-100 scale-100'
+                    ? 'opacity-0 scale-90 -translate-x-8'
+                    : 'opacity-100 scale-100 translate-x-0'
                 }`}
                 style={{
-                  transitionDelay: isTransitioning ? '0ms' : `${index * 150}ms`
+                  transitionDelay: isTransitioning ? '0ms' : `${index * 100}ms`,
+                  transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
                 }}
               >
                 <div className="h-full bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-300 group">
@@ -205,7 +206,7 @@ export const FeedbackSection = () => {
                 if (!isTransitioning) {
                   setIsTransitioning(true);
                   setCurrentIndex(index * 3);
-                  setTimeout(() => setIsTransitioning(false), 600);
+                  setTimeout(() => setIsTransitioning(false), 800);
                 }
               }}
               className={`h-2 rounded-full transition-all duration-300 ${
