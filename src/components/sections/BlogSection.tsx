@@ -48,7 +48,7 @@ const articles: Article[] = [
     description: 'Seasonal threats to animals are not a myth. Here you will find simple and effective tips on how to protect your pet at any time of the year.',
     category: 'Seasonal Care',
     icon: Heart,
-    imageUrl: './ad_01.png',
+    imageUrl: `${import.meta.env.BASE_URL}ad_01.png`,
   },
   {
     id: 2,
@@ -56,7 +56,7 @@ const articles: Article[] = [
     description: 'Learn what changes in behavior or appearance may indicate health problems. A timely visit to the veterinarian saves lives.',
     category: 'Health Alerts',
     icon: AlertCircle,
-    imageUrl: './ad_02.png',
+    imageUrl: `${import.meta.env.BASE_URL}ad_02.png`,
   },
   {
     id: 3,
@@ -64,7 +64,7 @@ const articles: Article[] = [
     description: 'A quick guide to nutrition: which foods improve the health of your ponytail and which are strictly forbidden.',
     category: 'Nutrition',
     icon: Apple,
-    imageUrl: './ad_03.png',
+    imageUrl: `${import.meta.env.BASE_URL}ad_03.png`,
   },
   {
     id: 4,
@@ -72,7 +72,7 @@ const articles: Article[] = [
     description: 'The tail, ears, and eyes of your pet communicate volumes. Learn to read these signs for a better understanding.',
     category: 'Behavior',
     icon: Heart,
-    imageUrl: './ad_04.png',
+    imageUrl: `${import.meta.env.BASE_URL}ad_04.png`,
   },
   {
     id: 5,
@@ -80,7 +80,7 @@ const articles: Article[] = [
     description: 'A comprehensive guide to the vaccination schedule and why each shot matters for your puppy\'s long-term health.',
     category: 'Prevention',
     icon: AlertCircle,
-    imageUrl: './ad_05.png',
+    imageUrl: `${import.meta.env.BASE_URL}ad_05.png`,
   },
   {
     id: 6,
@@ -88,7 +88,7 @@ const articles: Article[] = [
     description: 'As pets age, their needs change. Discover how to provide the best care for your aging companion.',
     category: 'Senior Care',
     icon: Heart,
-    imageUrl: './ad_06.png',
+    imageUrl: `${import.meta.env.BASE_URL}ad_06.png`,
   },
 ];
 

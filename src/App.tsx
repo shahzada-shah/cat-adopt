@@ -18,7 +18,7 @@
  */
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { FooterDivider } from './components/layout/FooterDivider';
@@ -33,6 +33,13 @@ import { ContactsPage } from './pages/ContactsPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+
+  // Force scroll to top on app mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, []);
 
   return (
     /**
@@ -54,7 +61,7 @@ function App() {
       {isLoading && <Loader onLoadComplete={() => setIsLoading(false)} />}
       
       <Router>
-        <div className="min-h-screen">
+        <div className="min-h-screen" style={{ position: 'relative' }}>
           {/**
            * ScrollToTop Component
          *

@@ -19,6 +19,13 @@ export const Loader = ({ onLoadComplete }: LoaderProps) => {
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
+    // Force scroll to top and prevent scrolling while loading
+    window.scrollTo(0, 0);
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = '0';
+    
     // Minimum loading time for smooth experience
     const minLoadTime = 1500;
     
@@ -26,18 +33,31 @@ export const Loader = ({ onLoadComplete }: LoaderProps) => {
       setIsExiting(true);
       // Wait for exit animation before completing
       setTimeout(() => {
+        // Re-enable scrolling
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
         onLoadComplete?.();
       }, 600);
     }, minLoadTime);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      // Cleanup: re-enable scrolling if component unmounts
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+    };
   }, [onLoadComplete]);
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 transition-opacity duration-500 ${
         isExiting ? 'opacity-0' : 'opacity-100'
       }`}
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100vw', height: '100vh' }}
     >
       <div className="flex flex-col items-center gap-6">
         {/* Animated Logo */}
