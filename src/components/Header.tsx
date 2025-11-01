@@ -1,4 +1,4 @@
-import { Phone, ChevronDown } from 'lucide-react';
+import { Phone, ChevronDown, Cat } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 export const Header = () => {
@@ -10,10 +10,8 @@ export const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 md:py-5">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-black rounded-full flex items-center justify-center transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
-              <div className="w-5 h-5 sm:w-6 sm:h-6 border-2 border-white rounded-full relative">
-                <div className="absolute inset-0 border-t-2 border-white rotate-45 transition-transform duration-500 group-hover:rotate-[405deg]"></div>
-              </div>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-black rounded-full flex items-center justify-center transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+              <Cat className="w-5 h-5 sm:w-6 sm:h-6 text-white transition-transform duration-300 group-hover:scale-110" />
             </div>
             <span className="text-base sm:text-lg font-semibold text-gray-900 transition-all duration-300 group-hover:text-gray-700">CatAdopt</span>
           </Link>
