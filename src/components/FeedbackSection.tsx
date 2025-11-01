@@ -99,29 +99,29 @@ export const FeedbackSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="bg-white py-20 relative overflow-hidden">
+    <section ref={sectionRef} className="bg-white py-12 sm:py-16 md:py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50"></div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${
+          className={`text-center mb-10 sm:mb-12 md:mb-16 transition-all duration-1000 ${
             inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <div className="inline-flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Heart className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 bg-gray-900 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+            <Heart className="w-3 sm:w-4 h-3 sm:h-4" />
             <span>Adoption Stories</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">
             Happy Families, Happy Cats
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4">
             Read what our adopters have to say about their experience finding their perfect feline companion
           </p>
         </div>
 
-        <div className="relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="relative px-0 sm:px-4 md:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {visibleTestimonials.map((testimonial, index) => (
               <div
                 key={`${testimonial.id}-${currentIndex}`}
@@ -137,16 +137,16 @@ export const FeedbackSection = () => {
                   transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
                 }}
               >
-                <div className="h-full bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-300 group">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-gray-800 to-gray-600 rounded-full flex items-center justify-center shadow-md flex-shrink-0 transform transition-transform duration-300 group-hover:scale-110">
-                      <span className="text-lg font-bold text-white">
+                <div className="h-full bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-300 group">
+                  <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-gray-800 to-gray-600 rounded-full flex items-center justify-center shadow-md flex-shrink-0 transform transition-transform duration-300 group-hover:scale-110">
+                      <span className="text-base sm:text-lg font-bold text-white">
                         {testimonial.name[0]}
                       </span>
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-lg text-gray-900 mb-1">
+                      <h3 className="font-bold text-base sm:text-lg text-gray-900 mb-0.5 sm:mb-1">
                         {testimonial.name}
                       </h3>
                       <p className="text-xs text-gray-500 font-medium">
@@ -158,19 +158,19 @@ export const FeedbackSection = () => {
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star
                           key={i}
-                          className="w-4 h-4 fill-amber-400 text-amber-400"
+                          className="w-3 sm:w-4 h-3 sm:h-4 fill-amber-400 text-amber-400"
                         />
                       ))}
                     </div>
                   </div>
 
-                  <p className="text-gray-600 leading-relaxed text-sm">
+                  <p className="text-gray-600 leading-relaxed text-xs sm:text-sm">
                     {testimonial.text}
                   </p>
 
-                  <div className="mt-6 pt-6 border-t border-gray-100">
+                  <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-100">
                     <div className="flex items-center gap-2 text-gray-400 group-hover:text-gray-900 transition-colors duration-300">
-                      <Heart className="w-4 h-4" />
+                      <Heart className="w-3 sm:w-4 h-3 sm:h-4" />
                       <span className="text-xs font-medium">Verified Adoption</span>
                     </div>
                   </div>
@@ -182,23 +182,23 @@ export const FeedbackSection = () => {
           <button
             onClick={handlePrevious}
             disabled={isTransitioning}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-900 hover:text-white hover:scale-110 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-white disabled:hover:text-gray-900 border border-gray-200"
+            className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 lg:-translate-x-6 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg items-center justify-center hover:bg-gray-900 hover:text-white hover:scale-110 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-white disabled:hover:text-gray-900 border border-gray-200"
             aria-label="Previous testimonials"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 sm:w-5 h-4 sm:h-5" />
           </button>
 
           <button
             onClick={handleNext}
             disabled={isTransitioning}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-900 hover:text-white hover:scale-110 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-white disabled:hover:text-gray-900 border border-gray-200"
+            className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 lg:translate-x-6 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg items-center justify-center hover:bg-gray-900 hover:text-white hover:scale-110 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-white disabled:hover:text-gray-900 border border-gray-200"
             aria-label="Next testimonials"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
           </button>
         </div>
 
-        <div className="flex justify-center gap-2 mt-12">
+        <div className="flex justify-center gap-2 mt-8 sm:mt-10 md:mt-12">
           {Array.from({ length: Math.ceil(testimonials.length / 3) }).map((_, index) => (
             <button
               key={index}

@@ -77,12 +77,12 @@ export const ServicesSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-white py-24 relative overflow-hidden">
+    <section ref={sectionRef} className="bg-white py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-gray-900 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div
           className={`mb-16 transition-all duration-1000 ${
             inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'

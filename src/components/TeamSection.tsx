@@ -84,8 +84,8 @@ export const TeamSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="bg-gradient-to-b from-white to-gray-50 py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section ref={sectionRef} className="bg-gradient-to-b from-white to-gray-50 py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="mb-20">
           <div className="inline-block mb-6">
             <span className="text-sm font-semibold tracking-wider uppercase text-gray-500 bg-gray-100 px-4 py-2 rounded-full">

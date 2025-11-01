@@ -46,13 +46,13 @@ export const AppointmentSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="bg-gradient-to-b from-gray-50 to-white py-24 relative overflow-hidden">
+    <section ref={sectionRef} className="bg-gradient-to-b from-gray-50 to-white py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-gray-900 rounded-full blur-3xl" />
         <div className="absolute top-0 right-0 w-96 h-96 bg-gray-900 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div
           className={`bg-gradient-to-br from-gray-100 to-gray-50 rounded-3xl p-8 lg:p-16 shadow-2xl border border-gray-200 transition-all duration-1000 ${
             inView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
