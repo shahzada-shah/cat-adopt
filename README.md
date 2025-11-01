@@ -59,6 +59,12 @@ npm run lint         # Run ESLint
 npm run typecheck    # TypeScript type checking
 ```
 
+## Live Demo
+
+🚀 **[View Live Site](https://shahzada-shah.github.io/cat-adopt/)**
+
+Automatically deployed via GitHub Actions on every push to main branch.
+
 ## Technical Highlights
 
 ### Component Architecture
@@ -84,6 +90,16 @@ npm run typecheck    # TypeScript type checking
 - **TypeScript Interfaces**: Type definitions for all data structures
 - **ESLint**: Enforced code quality and consistency
 - **Git History**: Clean, semantic commit messages
+- **CI/CD Pipeline**: Automated deployment to GitHub Pages via GitHub Actions
+
+## Deployment
+
+### GitHub Pages CI/CD
+- **Automated Builds**: Triggers on every push to main branch
+- **GitHub Actions**: Uses official deploy-pages action
+- **Build Verification**: Runs linting and TypeScript checks before deployment
+- **Zero Downtime**: Concurrent deployment prevention
+- **Fast Deployment**: Optimized build pipeline (~1-2 minutes)
 
 ## Recent Improvements
 
