@@ -1,11 +1,13 @@
 import { Heart, Users, Award, Target } from 'lucide-react';
+import { PageTransition } from '../components/PageTransition';
 
 export const AboutPage = () => {
   return (
+    <PageTransition>
     <div className="min-h-screen pt-24">
       <div className="bg-gradient-to-b from-white via-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-slideUp">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">About CatAdopt</h1>
           <p className="text-base text-gray-600 max-w-3xl mx-auto">
             Connecting loving families with their perfect feline companions since 2015
@@ -13,7 +15,7 @@ export const AboutPage = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <div className="space-y-4">
+          <div className="space-y-4 animate-slideUp animate-delay-100">
             <h2 className="text-2xl font-bold text-gray-900">Our Story</h2>
             <p className="text-sm text-gray-600 leading-relaxed">
               CatAdopt was founded by a group of passionate cat lovers who recognized the need for a dedicated
@@ -27,7 +29,7 @@ export const AboutPage = () => {
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4 animate-slideUp animate-delay-200">
             <h2 className="text-2xl font-bold text-gray-900">Our Mission</h2>
             <p className="text-sm text-gray-600 leading-relaxed">
               To rescue, rehabilitate, and rehome cats in need while educating the community about responsible
@@ -43,32 +45,32 @@ export const AboutPage = () => {
         </div>
 
         <div className="grid md:grid-cols-4 gap-6 mb-16">
-          <div className="text-center p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl">
-            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+          <div className="text-center p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-smooth hover:scale-105 transition-all duration-300 animate-scaleIn animate-delay-100">
+            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3 transform transition-transform duration-300 hover:rotate-12">
               <Heart className="w-6 h-6 text-white" />
             </div>
             <h3 className="text-3xl font-bold text-gray-900 mb-1">5,000+</h3>
             <p className="text-xs text-gray-600">Successful Adoptions</p>
           </div>
 
-          <div className="text-center p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl">
-            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+          <div className="text-center p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-smooth hover:scale-105 transition-all duration-300 animate-scaleIn animate-delay-200">
+            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3 transform transition-transform duration-300 hover:rotate-12">
               <Users className="w-6 h-6 text-white" />
             </div>
             <h3 className="text-3xl font-bold text-gray-900 mb-1">150+</h3>
             <p className="text-xs text-gray-600">Active Volunteers</p>
           </div>
 
-          <div className="text-center p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl">
-            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+          <div className="text-center p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-smooth hover:scale-105 transition-all duration-300 animate-scaleIn animate-delay-300">
+            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3 transform transition-transform duration-300 hover:rotate-12">
               <Award className="w-6 h-6 text-white" />
             </div>
             <h3 className="text-3xl font-bold text-gray-900 mb-1">10+</h3>
             <p className="text-xs text-gray-600">Years of Service</p>
           </div>
 
-          <div className="text-center p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl">
-            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+          <div className="text-center p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-smooth hover:scale-105 transition-all duration-300 animate-scaleIn animate-delay-400">
+            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3 transform transition-transform duration-300 hover:rotate-12">
               <Target className="w-6 h-6 text-white" />
             </div>
             <h3 className="text-3xl font-bold text-gray-900 mb-1">98%</h3>
@@ -108,10 +110,10 @@ export const AboutPage = () => {
             and make a difference in the lives of cats in need.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <button className="px-6 py-2 text-sm bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors">
+            <button className="px-6 py-2 text-sm bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-lg">
               Adopt a Cat
             </button>
-            <button className="px-6 py-2 text-sm border-2 border-gray-900 text-gray-900 rounded-full font-medium hover:bg-gray-50 transition-colors">
+            <button className="px-6 py-2 text-sm border-2 border-gray-900 text-gray-900 rounded-full font-medium hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:shadow-lg">
               Become a Volunteer
             </button>
           </div>
@@ -119,5 +121,6 @@ export const AboutPage = () => {
       </div>
       </div>
     </div>
+    </PageTransition>
   );
 };

@@ -1,5 +1,6 @@
 import { Phone, Mail, MapPin, Clock, MessageSquare, Send, Facebook, Instagram, Youtube } from 'lucide-react';
 import { useState } from 'react';
+import { PageTransition } from '../components/PageTransition';
 
 export const ContactsPage = () => {
   const [formData, setFormData] = useState({
@@ -65,8 +66,9 @@ export const ContactsPage = () => {
   ];
 
   return (
+    <PageTransition>
     <div className="min-h-screen pt-24">
-      <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12">
+      <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12 animate-fadeIn">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm mb-4">
@@ -332,5 +334,6 @@ export const ContactsPage = () => {
       </div>
       </div>
     </div>
+    </PageTransition>
   );
 };
