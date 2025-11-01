@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, Heart } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
 interface Testimonial {
@@ -7,51 +7,51 @@ interface Testimonial {
   rating: number;
   text: string;
   avatar?: string;
-  petType?: string;
+  adoptionType?: string;
 }
 
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Anna',
+    name: 'Sarah',
     rating: 5,
-    text: 'This is a wonderful clinic! The doctors are professional, attentive and caring to each patient. My dog received quick help and now feels great. Thank you so much for your care and love for animals!',
-    petType: 'Dog owner',
+    text: 'Adopting Luna from CatAdopt was the best decision ever! The team helped me find the perfect match for my lifestyle. Luna has brought so much joy to my home. The post-adoption support was incredible too!',
+    adoptionType: 'First-time adopter',
   },
   {
     id: 2,
-    name: 'Maria',
+    name: 'Michael',
     rating: 5,
-    text: 'Excellent service and genuine care for our pets. The veterinarians took the time to explain everything and made sure my cat was comfortable throughout the entire visit. Highly recommend!',
-    petType: 'Cat owner',
+    text: 'The adoption process was smooth and stress-free. The counselors really knew their cats and helped me find Oliver, who fit perfectly with my other pets. Professional, caring, and knowledgeable team!',
+    adoptionType: 'Multi-cat home',
   },
   {
     id: 3,
-    name: 'Viktor',
+    name: 'Jennifer',
     rating: 5,
-    text: 'Professional team with modern equipment. They diagnosed my pet quickly and provided effective treatment. The staff is friendly and knowledgeable. Best veterinary clinic in the area!',
-    petType: 'Bird owner',
+    text: 'I fostered Whiskers through their foster-to-adopt program and fell in love immediately. The support and guidance made the transition seamless. Could not be happier with my new family member!',
+    adoptionType: 'Foster-to-adopt',
   },
   {
     id: 4,
-    name: 'Olena',
+    name: 'David',
     rating: 5,
-    text: 'My rabbit had an emergency and they fit us in immediately. The care and attention to detail was outstanding. Thank you for saving my pet and providing such compassionate service!',
-    petType: 'Rabbit owner',
+    text: 'CatAdopt matched me with the perfect senior cat. They provided excellent information about her needs and history. The care education sessions prepared me perfectly. Highly recommend!',
+    adoptionType: 'Senior cat adopter',
   },
   {
     id: 5,
-    name: 'Dmytro',
+    name: 'Emily',
     rating: 5,
-    text: 'Outstanding experience from start to finish. The veterinarians are knowledgeable, caring, and patient. They answered all my questions and provided excellent care for my pets.',
-    petType: 'Multiple pets',
+    text: 'From meet-and-greet to bringing Mittens home, every step was wonderful. The staff is passionate about their mission and it shows. Thank you for helping me find my purr-fect companion!',
+    adoptionType: 'Happy family',
   },
   {
     id: 6,
-    name: 'Iryna',
+    name: 'Robert',
     rating: 5,
-    text: 'I have been bringing my pets here for years and have always received exceptional care. The entire team is dedicated, professional, and truly loves animals. Could not ask for better!',
-    petType: 'Long-time client',
+    text: 'This is my second adoption from CatAdopt and the experience was just as amazing as the first. They truly care about finding the right homes for these cats. Professional and heartwarming service!',
+    adoptionType: 'Repeat adopter',
   },
 ];
 
@@ -60,7 +60,6 @@ export const FeedbackSection = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [inView, setInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -83,14 +82,14 @@ export const FeedbackSection = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 3 : prev - 1));
-    setTimeout(() => setIsTransitioning(false), 500);
+    setTimeout(() => setIsTransitioning(false), 600);
   };
 
   const handleNext = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev >= testimonials.length - 3 ? 0 : prev + 1));
-    setTimeout(() => setIsTransitioning(false), 500);
+    setTimeout(() => setIsTransitioning(false), 600);
   };
 
   const visibleTestimonials = [
@@ -100,88 +99,79 @@ export const FeedbackSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="bg-gradient-to-b from-gray-50 to-white py-24 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gray-900 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-gray-900 rounded-full blur-3xl" />
-      </div>
+    <section ref={sectionRef} className="bg-white py-20 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div
-          className={`mb-16 transition-all duration-1000 ${
+          className={`text-center mb-16 transition-all duration-1000 ${
             inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <div className="inline-block mb-6">
-            <span className="text-sm font-semibold tracking-wider uppercase text-gray-500 bg-white px-4 py-2 rounded-full shadow-sm">
-              Testimonials
-            </span>
+          <div className="inline-flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <Heart className="w-4 h-4" />
+            <span>Adoption Stories</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-            Feedback from our customers
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            Happy Families, Happy Cats
           </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Read what our adopters have to say about their experience finding their perfect feline companion
+          </p>
         </div>
 
-        <div className="relative px-4 lg:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {visibleTestimonials.map((testimonial, index) => (
               <div
-                key={`${testimonial.id}-${currentIndex}-${index}`}
-                className={`transition-all duration-700 delay-${index * 100} ${
+                key={`${testimonial.id}-${currentIndex}`}
+                className={`transform transition-all duration-700 ${
                   inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                } ${isTransitioning ? 'scale-95 opacity-50' : 'scale-100 opacity-100'}`}
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
+                } ${
+                  isTransitioning
+                    ? 'opacity-0 scale-95'
+                    : 'opacity-100 scale-100'
+                }`}
+                style={{
+                  transitionDelay: isTransitioning ? '0ms' : `${index * 150}ms`
+                }}
               >
-                <div className="h-full bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-200 relative group overflow-hidden">
-                  <div
-                    className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 transform origin-left transition-transform duration-500 ${
-                      hoveredCard === index ? 'scale-x-100' : 'scale-x-0'
-                    }`}
-                  />
-
-                  <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
-                    <Quote className="w-16 h-16 text-gray-900" />
-                  </div>
-
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-xl font-bold text-gray-700">
-                          {testimonial.name[0]}
-                        </span>
-                      </div>
-
-                      <div className="flex-1">
-                        <h3 className="font-bold text-lg text-gray-900 mb-1">
-                          {testimonial.name}
-                        </h3>
-                        <p className="text-xs text-gray-500 uppercase tracking-wide">
-                          {testimonial.petType}
-                        </p>
-                      </div>
+                <div className="h-full bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-300 group">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-gray-800 to-gray-600 rounded-full flex items-center justify-center shadow-md flex-shrink-0 transform transition-transform duration-300 group-hover:scale-110">
+                      <span className="text-lg font-bold text-white">
+                        {testimonial.name[0]}
+                      </span>
                     </div>
 
-                    <div className="flex gap-1 mb-4">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-lg text-gray-900 mb-1">
+                        {testimonial.name}
+                      </h3>
+                      <p className="text-xs text-gray-500 font-medium">
+                        {testimonial.adoptionType}
+                      </p>
+                    </div>
+
+                    <div className="flex gap-0.5 flex-shrink-0">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star
                           key={i}
-                          className={`w-4 h-4 fill-gray-900 text-gray-900 transition-all duration-300 delay-${i * 50} ${
-                            hoveredCard === index ? 'scale-110' : 'scale-100'
-                          }`}
+                          className="w-4 h-4 fill-amber-400 text-amber-400"
                         />
                       ))}
                     </div>
+                  </div>
 
-                    <p className="text-gray-600 leading-relaxed text-sm relative">
-                      {testimonial.text}
-                    </p>
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                    {testimonial.text}
+                  </p>
 
-                    <div
-                      className={`absolute bottom-0 left-0 w-12 h-1 bg-gray-900 rounded-full transition-all duration-500 ${
-                        hoveredCard === index ? 'w-full' : 'w-12'
-                      }`}
-                    />
+                  <div className="mt-6 pt-6 border-t border-gray-100">
+                    <div className="flex items-center gap-2 text-gray-400 group-hover:text-gray-900 transition-colors duration-300">
+                      <Heart className="w-4 h-4" />
+                      <span className="text-xs font-medium">Verified Adoption</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -191,19 +181,19 @@ export const FeedbackSection = () => {
           <button
             onClick={handlePrevious}
             disabled={isTransitioning}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 lg:-translate-x-6 w-14 h-14 bg-white rounded-full shadow-xl flex items-center justify-center hover:bg-gray-900 hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group border-2 border-gray-100"
-            aria-label="Previous testimonial"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-900 hover:text-white hover:scale-110 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-white disabled:hover:text-gray-900 border border-gray-200"
+            aria-label="Previous testimonials"
           >
-            <ChevronLeft className="w-6 h-6 transition-transform duration-300 group-hover:-translate-x-0.5" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
 
           <button
             onClick={handleNext}
             disabled={isTransitioning}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 lg:translate-x-6 w-14 h-14 bg-white rounded-full shadow-xl flex items-center justify-center hover:bg-gray-900 hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group border-2 border-gray-100"
-            aria-label="Next testimonial"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-900 hover:text-white hover:scale-110 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-white disabled:hover:text-gray-900 border border-gray-200"
+            aria-label="Next testimonials"
           >
-            <ChevronRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-0.5" />
+            <ChevronRight className="w-5 h-5" />
           </button>
         </div>
 
@@ -215,13 +205,13 @@ export const FeedbackSection = () => {
                 if (!isTransitioning) {
                   setIsTransitioning(true);
                   setCurrentIndex(index * 3);
-                  setTimeout(() => setIsTransitioning(false), 500);
+                  setTimeout(() => setIsTransitioning(false), 600);
                 }
               }}
               className={`h-2 rounded-full transition-all duration-300 ${
                 Math.floor(currentIndex / 3) === index
                   ? 'w-8 bg-gray-900'
-                  : 'w-2 bg-gray-300 hover:bg-gray-400'
+                  : 'w-2 bg-gray-300 hover:bg-gray-500 hover:w-4'
               }`}
               aria-label={`Go to testimonial set ${index + 1}`}
             />
