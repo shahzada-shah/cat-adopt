@@ -10,22 +10,22 @@ interface Stat {
 
 const stats: Stat[] = [
   {
-    value: '25',
-    label: 'years of experience',
+    value: '10',
+    label: 'years helping cats',
     icon: Shield,
-    endValue: 25,
+    endValue: 10,
   },
   {
-    value: '20+',
-    label: 'medical experts',
+    value: '150+',
+    label: 'active volunteers',
     icon: Users,
-    endValue: 20,
+    endValue: 150,
   },
   {
-    value: '10 320+',
-    label: 'cured animals',
+    value: '5 000+',
+    label: 'successful adoptions',
     icon: Heart,
-    endValue: 10320,
+    endValue: 5000,
   },
 ];
 
@@ -106,20 +106,20 @@ export const AboutSection = () => {
                 </span>
               </div>
               <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Your pets are in good hands
+                Every Cat Deserves a Loving Home
               </h2>
             </div>
 
             <div className="space-y-5 text-gray-600">
               <p className="text-lg leading-relaxed relative pl-4 border-l-2 border-gray-200">
-                Our veterinary clinic is a team of professionals who take care of your
-                animals' health with love and attention. We offer modern diagnostics,
-                treatment, vaccination, and preventive examinations.
+                CatAdopt is dedicated to rescuing, rehabilitating, and rehoming cats in need.
+                Our passionate team works tirelessly to match loving families with their perfect
+                feline companions, ensuring every cat finds a safe and happy forever home.
               </p>
 
               <p className="text-lg leading-relaxed relative pl-4 border-l-2 border-gray-200">
-                Choosing us, you get quality medical care and comfort for your pet.
-                Entrust your pet's health to those who really care!
+                With comprehensive care, behavioral assessment, and ongoing support, we make the
+                adoption process smooth and rewarding. Trust us to help you find your purr-fect match!
               </p>
             </div>
 
@@ -199,7 +199,7 @@ export const AboutSection = () => {
                 <div className="text-center">
                   <Heart className="w-8 h-8 text-gray-900 mx-auto mb-2 fill-gray-900" />
                   <div className="text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                    Trusted Care
+                    With Love
                   </div>
                 </div>
               </div>

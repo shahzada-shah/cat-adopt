@@ -37,12 +37,12 @@ export const AppointmentPage = () => {
   ];
 
   const services = [
-    'Diagnostics and Laboratory Tests',
-    'Animal Vaccination',
-    'Surgical Interventions',
-    'Veterinary Consultation',
-    'Grooming and Hygiene',
-    '24/7 Monitoring and Care',
+    'Meet & Greet with Cats',
+    'Adoption Consultation',
+    'Foster-to-Adopt Info',
+    'Cat Care Education',
+    'Home Assessment',
+    'General Inquiry',
   ];
 
   return (
@@ -56,9 +56,9 @@ export const AppointmentPage = () => {
                 Book Your Visit
               </span>
             </div>
-            <h1 className="text-5xl font-bold mb-6">Online Appointment</h1>
+            <h1 className="text-5xl font-bold mb-6">Schedule a Visit</h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Schedule your visit at a time that works for you. Our team will confirm your appointment and prepare everything for your arrival.
+              Book a time to meet our cats and find your perfect companion. Our adoption counselors will be ready to guide you through the process.
             </p>
           </div>
         </div>
@@ -70,11 +70,11 @@ export const AppointmentPage = () => {
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Clock className="w-8 h-8 text-gray-900" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Working Hours</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Visiting Hours</h3>
             <p className="text-gray-600 mb-4">
-              Monday - Friday: 9:00 - 19:00<br />
+              Monday - Friday: 10:00 - 18:00<br />
               Saturday: 10:00 - 16:00<br />
-              Sunday: Emergency only
+              Sunday: 12:00 - 16:00
             </p>
           </div>
 

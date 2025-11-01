@@ -1,60 +1,59 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const Hero = () => {
   return (
-    <section className="min-h-screen bg-gray-50 pt-24">
+    <section className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-24">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
+          <div className="space-y-8 animate-slideUp">
+            <div className="inline-flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium animate-scaleIn">
+              <Heart className="w-4 h-4" />
+              <span>Find Your Perfect Companion</span>
+            </div>
+
             <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              Caring for your pets' health is our priority
+              Give a Cat a Forever Home
             </h1>
 
             <p className="text-lg text-gray-700 leading-relaxed max-w-lg">
-              A reliable veterinary clinic with qualified specialists and modern equipment.
+              Discover loving cats waiting for their new family. Every adoption saves a life and brings joy to your home.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <button className="px-8 py-4 bg-gray-300 hover:bg-gray-400 text-gray-900 font-medium rounded-full transition-colors">
-                Make an appointment
-              </button>
-
-              <a
-                href="#consultation"
-                className="flex items-center gap-2 text-gray-900 font-medium hover:gap-3 transition-all"
+              <Link
+                to="/services"
+                className="px-8 py-4 bg-gray-900 hover:bg-gray-700 text-white font-medium rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
-                <span>Free consultation</span>
-                <ArrowRight className="w-5 h-5" />
-              </a>
+                Browse Available Cats
+              </Link>
+
+              <Link
+                to="/about"
+                className="flex items-center gap-2 text-gray-900 font-medium hover:gap-3 transition-all duration-300 group"
+              >
+                <span>Learn About Adoption</span>
+                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="aspect-square bg-gray-300 rounded-lg relative overflow-hidden">
-              <svg
-                className="absolute inset-0 w-full h-full"
-                viewBox="0 0 400 400"
-                preserveAspectRatio="none"
-              >
-                <line
-                  x1="0"
-                  y1="0"
-                  x2="400"
-                  y2="400"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  className="text-gray-400"
-                />
-                <line
-                  x1="400"
-                  y1="0"
-                  x2="0"
-                  y2="400"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  className="text-gray-400"
-                />
-              </svg>
+          <div className="relative animate-scaleIn animate-delay-200">
+            <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl relative overflow-hidden shadow-2xl">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center p-8">
+                  <div className="w-32 h-32 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse-gentle">
+                    <Heart className="w-16 h-16 text-white" />
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900 mb-2">
+                    Over 5,000 Cats
+                  </p>
+                  <p className="text-gray-600">
+                    Successfully adopted into loving homes
+                  </p>
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/10 to-transparent"></div>
             </div>
           </div>
         </div>

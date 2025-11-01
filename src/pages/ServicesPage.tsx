@@ -1,4 +1,4 @@
-import { Stethoscope, Syringe, Scissors, MessageSquare, Clock, Activity, Check, ArrowRight } from 'lucide-react';
+import { Heart, Home, UserCheck, MessageSquare, Clock, Sparkles, Check, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 
 interface Service {
@@ -7,99 +7,99 @@ interface Service {
   description: string;
   fullDescription: string;
   price: string;
-  icon: typeof Stethoscope;
+  icon: typeof Heart;
   features: string[];
 }
 
 const services: Service[] = [
   {
     id: 1,
-    title: 'Diagnostics and Laboratory Tests',
-    description: 'Comprehensive health screening and diagnostic services',
-    fullDescription: 'Our state-of-the-art diagnostic center offers a complete range of testing services to ensure accurate diagnosis and effective treatment planning. We use the latest technology to provide quick and reliable results.',
-    price: 'from 400 UAH',
-    icon: Stethoscope,
+    title: 'Cat Meet & Greet',
+    description: 'Visit and interact with available cats',
+    fullDescription: 'Spend quality time with our cats in a comfortable environment. Our adoption counselors will help you find cats that match your lifestyle, personality, and living situation.',
+    price: 'Free',
+    icon: Heart,
     features: [
-      'Blood analysis and biochemistry',
-      'Ultrasound examinations',
-      'Digital X-ray imaging',
-      'Urinalysis and fecal tests',
-      'Same-day results available',
+      'One-on-one time with cats',
+      'Learn about each cat\'s personality',
+      'No appointment necessary',
+      'Expert guidance from staff',
+      'Multiple visit options',
     ],
   },
   {
     id: 2,
-    title: 'Animal Vaccination',
-    description: 'Protect your cat with certified vaccines',
-    fullDescription: 'Keep your feline friend healthy with our comprehensive vaccination program. We use only certified, high-quality vaccines and maintain detailed health records for every patient.',
-    price: 'from 500 UAH',
-    icon: Syringe,
+    title: 'Adoption Process Assistance',
+    description: 'Guided support through adoption',
+    fullDescription: 'Our experienced team walks you through every step of the adoption process, from application to bringing your new companion home. We make adoption simple and stress-free.',
+    price: 'Free',
+    icon: UserCheck,
     features: [
-      'Core and non-core vaccines',
-      'Rabies vaccination',
-      'FVRCP combination vaccine',
-      'Customized vaccination schedules',
-      'Digital health passport',
+      'Application assistance',
+      'Home environment consultation',
+      'Reference check coordination',
+      'Adoption contract review',
+      'Post-adoption follow-up',
     ],
   },
   {
     id: 3,
-    title: 'Surgical Interventions',
-    description: 'Safe and professional surgical care',
-    fullDescription: 'Our experienced surgical team provides a full range of procedures from routine spaying and neutering to complex emergency surgeries, all performed in our modern operating rooms.',
-    price: 'from 1,500 UAH',
-    icon: Activity,
+    title: 'Cat Care Education',
+    description: 'Learn how to care for your new cat',
+    fullDescription: 'Comprehensive education on cat care, behavior, nutrition, and health. We ensure you\'re fully prepared to provide the best possible home for your new feline friend.',
+    price: 'Free',
+    icon: Sparkles,
     features: [
-      'Spaying and neutering',
-      'Soft tissue surgery',
-      'Emergency procedures',
-      'Pain management protocols',
-      'Post-operative care included',
+      'Nutrition and feeding guidance',
+      'Litter training tips',
+      'Behavioral understanding',
+      'Health maintenance advice',
+      'Introduction to multi-pet homes',
     ],
   },
   {
     id: 4,
-    title: 'Veterinary Consultation',
-    description: 'Expert advice for your cat\'s health',
-    fullDescription: 'Schedule a consultation with our experienced veterinarians for health assessments, behavioral advice, nutrition guidance, and answers to all your cat care questions.',
-    price: 'from 300 UAH',
+    title: 'Adoption Counseling',
+    description: 'Expert advice for successful adoption',
+    fullDescription: 'Schedule a consultation with our adoption counselors to discuss your family, lifestyle, and what you\'re looking for in a cat. We help ensure the perfect match for everyone.',
+    price: 'Free',
     icon: MessageSquare,
     features: [
-      'Complete health examination',
-      'Behavioral assessment',
-      'Nutrition counseling',
-      'Preventive care planning',
-      'Follow-up recommendations',
+      'Lifestyle assessment',
+      'Cat personality matching',
+      'Family readiness evaluation',
+      'Special needs cat guidance',
+      'Long-term planning support',
     ],
   },
   {
     id: 5,
-    title: 'Grooming and Hygiene',
-    description: 'Keep your cat looking and feeling great',
-    fullDescription: 'Professional grooming services to maintain your cat\'s health and appearance. Our gentle approach ensures a stress-free experience for even the most anxious pets.',
-    price: 'from 300 UAH',
-    icon: Scissors,
+    title: 'Foster-to-Adopt Program',
+    description: 'Try fostering before committing',
+    fullDescription: 'Our foster-to-adopt program allows you to bring a cat home on a trial basis. This gives both you and the cat time to adjust and ensure it\'s the right fit.',
+    price: 'Free',
+    icon: Home,
     features: [
-      'Professional nail trimming',
-      'Coat brushing and detangling',
-      'Dental hygiene care',
-      'Ear cleaning',
-      'Sanitary trimming',
+      'Trial period at home',
+      'All supplies provided',
+      'Support during transition',
+      'Option to adopt or return',
+      'Perfect for first-time owners',
     ],
   },
   {
     id: 6,
-    title: '24/7 Monitoring and Care',
-    description: 'Round-the-clock professional care',
-    fullDescription: 'Our clinic provides comprehensive inpatient care with continuous monitoring by qualified staff. Your cat receives the attention and treatment they need at any hour.',
-    price: 'from 700 UAH',
+    title: 'Post-Adoption Support',
+    description: '30-day support after adoption',
+    fullDescription: 'We provide ongoing support for 30 days after adoption to help with any questions or concerns. Our team is here to ensure a smooth transition for you and your new cat.',
+    price: 'Free',
     icon: Clock,
     features: [
-      '24-hour veterinary supervision',
-      'Post-surgical monitoring',
-      'IV fluid therapy',
-      'Medication administration',
-      'Emergency response ready',
+      '24/7 helpline access',
+      'Behavior consultation',
+      'Health question support',
+      'Integration assistance',
+      'Return policy if needed',
     ],
   },
 ];
@@ -111,10 +111,10 @@ export const ServicesPage = () => {
     <div className="min-h-screen pt-24">
       <div className="bg-gradient-to-b from-white via-gray-50 to-white py-12">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h1>
+          <div className="text-center mb-8 animate-slideUp">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Adoption Services</h1>
             <p className="text-base text-gray-600 max-w-3xl mx-auto">
-              Comprehensive veterinary care designed specifically for cats. From routine checkups to advanced procedures, we're here for every stage of your cat's life.
+              From your first visit to welcoming your new cat home, we provide comprehensive support throughout the entire adoption journey. All our services are completely free.
             </p>
           </div>
         </div>
@@ -191,9 +191,9 @@ export const ServicesPage = () => {
 
         <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-bold mb-4">Need Help Choosing?</h2>
+            <h2 className="text-2xl font-bold mb-4">Ready to Adopt?</h2>
             <p className="text-sm text-gray-300 mb-6">
-              Our veterinary team is here to help you select the right services for your cat's needs. Contact us for a personalized consultation.
+              Our adoption team is here to help you find your perfect feline companion. Contact us to schedule a meet and greet with our available cats.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <button className="px-6 py-2 text-sm bg-white text-gray-900 rounded-full font-medium hover:bg-gray-100 transition-colors">
@@ -211,9 +211,9 @@ export const ServicesPage = () => {
             <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
               <Check className="w-6 h-6 text-gray-900" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">Certified Professionals</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Expert Adoption Team</h3>
             <p className="text-xs text-gray-600">
-              All our veterinarians are certified and experienced in feline care.
+              Our counselors are trained in cat behavior and adoption best practices.
             </p>
           </div>
 
@@ -221,9 +221,9 @@ export const ServicesPage = () => {
             <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
               <Activity className="w-6 h-6 text-gray-900" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">Modern Equipment</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Clean, Safe Facility</h3>
             <p className="text-xs text-gray-600">
-              State-of-the-art facilities with the latest veterinary technology.
+              Comfortable environments where cats thrive while awaiting adoption.
             </p>
           </div>
 
@@ -231,9 +231,9 @@ export const ServicesPage = () => {
             <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
               <Clock className="w-6 h-6 text-gray-900" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">24/7 Availability</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Lifetime Support</h3>
             <p className="text-xs text-gray-600">
-              Emergency services available around the clock for urgent care.
+              We're here for you and your cat long after adoption day.
             </p>
           </div>
         </div>
