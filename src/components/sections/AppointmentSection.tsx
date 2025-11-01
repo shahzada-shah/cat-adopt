@@ -1,3 +1,33 @@
+/**
+ * AppointmentSection Component
+ *
+ * A comprehensive appointment booking form with validation, animations, and success feedback.
+ * Features responsive design, animated form states, and elegant user experience.
+ *
+ * @component
+ * @returns {JSX.Element} Rendered appointment booking section
+ *
+ * Features:
+ * - Controlled form inputs with React state
+ * - Focus state management for interactive feedback
+ * - Success animation on form submission
+ * - Autocomplete disabled for security
+ * - Responsive grid layout (1/2 columns)
+ * - Intersection Observer for scroll animations
+ * - Mobile-optimized touch interactions
+ *
+ * Form Fields:
+ * - Name (text input)
+ * - Phone (tel input)
+ * - Message (textarea)
+ *
+ * Architecture:
+ * - Uses React hooks (useState, useEffect, useRef)
+ * - Controlled components pattern
+ * - Intersection Observer API
+ * - Tailwind CSS for styling
+ */
+
 import { Send, Calendar, User, Phone, MessageSquare, CheckCircle2 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
@@ -12,6 +42,9 @@ export const AppointmentSection = () => {
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  /**
+   * Setup Intersection Observer for scroll-triggered animations
+   */
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -29,6 +62,10 @@ export const AppointmentSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  /**
+   * Handle form submission
+   * Shows success animation and resets form after 3 seconds
+   */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
@@ -38,6 +75,10 @@ export const AppointmentSection = () => {
     }, 3000);
   };
 
+  /**
+   * Handle input changes
+   * Updates form state with new values
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
       ...prev,
@@ -142,7 +183,7 @@ export const AppointmentSection = () => {
                   </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className={`space-y-6 ${isSubmitted ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}>
+                <form onSubmit={handleSubmit} autoComplete="off" className={`space-y-6 ${isSubmitted ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}>
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
                       First and last name
@@ -165,6 +206,7 @@ export const AppointmentSection = () => {
                         onBlur={() => setFocusedField(null)}
                         placeholder="Enter your full name"
                         required
+                        autoComplete="off"
                         className="w-full pl-12 pr-4 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-gray-900 focus:bg-white transition-all duration-300 outline-none text-gray-900 placeholder-gray-400"
                       />
                     </div>
@@ -192,6 +234,7 @@ export const AppointmentSection = () => {
                         onBlur={() => setFocusedField(null)}
                         placeholder="+380 XX XXX XX XX"
                         required
+                        autoComplete="off"
                         className="w-full pl-12 pr-4 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-gray-900 focus:bg-white transition-all duration-300 outline-none text-gray-900 placeholder-gray-400"
                       />
                     </div>
@@ -219,6 +262,7 @@ export const AppointmentSection = () => {
                         placeholder="Tell us about your pet and reason for visit..."
                         rows={4}
                         required
+                        autoComplete="off"
                         className="w-full pl-12 pr-4 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-gray-900 focus:bg-white transition-all duration-300 outline-none text-gray-900 placeholder-gray-400 resize-none"
                       />
                     </div>

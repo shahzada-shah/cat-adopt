@@ -23,7 +23,7 @@
  * - Follows accessibility best practices (semantic HTML, ARIA labels)
  */
 
-import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Cat } from 'lucide-react';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -67,9 +67,9 @@ export const Footer = () => {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center shadow-lg">
-                  <div className="w-6 h-6 border-3 border-white rounded-full" />
+                  <Cat className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-2xl font-bold text-gray-900">logoipsum</span>
+                <span className="text-2xl font-bold text-gray-900">CatAdopt</span>
               </div>
             </div>
 

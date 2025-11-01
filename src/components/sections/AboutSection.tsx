@@ -1,6 +1,31 @@
+/**
+ * AboutSection Component
+ *
+ * Displays the "About Us" section with animated statistics and mission statement.
+ * Features smooth number counting animations and responsive card layout.
+ *
+ * @component
+ * @returns {JSX.Element} Rendered about section
+ *
+ * Features:
+ * - Animated number counters using setInterval
+ * - Intersection Observer for scroll-triggered animations
+ * - Responsive grid layout for statistics cards
+ * - Image with hover effects and decorative elements
+ * - Mobile-first responsive design
+ *
+ * Performance:
+ * - Uses useRef to prevent duplicate animations
+ * - Cleans up timers properly
+ * - Optimized with Intersection Observer
+ */
+
 import { Heart, Shield, Users } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
+/**
+ * Statistic card data structure
+ */
 interface Stat {
   value: string;
   label: string;
@@ -8,6 +33,9 @@ interface Stat {
   endValue: number;
 }
 
+/**
+ * Static statistics data
+ */
 const stats: Stat[] = [
   {
     value: '10',
@@ -35,6 +63,9 @@ export const AboutSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
+  /**
+   * Setup Intersection Observer for scroll-triggered animations
+   */
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -54,6 +85,10 @@ export const AboutSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  /**
+   * Animate counter numbers from 0 to target value
+   * Creates smooth counting effect over 2 seconds
+   */
   const animateCounters = () => {
     const duration = 2000;
     const steps = 60;
@@ -79,6 +114,10 @@ export const AboutSection = () => {
     });
   };
 
+  /**
+   * Format counter value based on index
+   * Adds appropriate suffixes (+ symbol, thousand separator)
+   */
   const formatCounter = (value: number, index: number) => {
     if (index === 0) return value.toString();
     if (index === 1) return `${value}+`;
@@ -88,15 +127,46 @@ export const AboutSection = () => {
   return (
     <section ref={sectionRef} className="bg-gradient-to-b from-gray-50 to-white py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gray-900 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gray-900 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2" />
+        <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-gray-900 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-gray-900 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+          <div
+            className={`relative transition-all duration-1000 delay-300 ${
+              inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+            }`}
+          >
+            <div className="relative group">
+              <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div 
+                className="relative aspect-square rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl bg-gray-200"
+                style={{
+                  backgroundImage: 'url(/cat_02.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/10 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+
+              <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 flex items-center justify-center transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+                <div className="text-center">
+                  <Heart className="w-6 h-6 sm:w-8 sm:h-8 text-gray-900 mx-auto mb-1 sm:mb-2 fill-gray-900" />
+                  <div className="text-xs font-semibold text-gray-700 uppercase tracking-wide">
+                    With Love
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div
             className={`space-y-8 transition-all duration-1000 ${
-              inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+              inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
             }`}
           >
             <div className="space-y-6">
@@ -105,25 +175,25 @@ export const AboutSection = () => {
                   About Us
                 </span>
               </div>
-              <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
                 Every Cat Deserves a Loving Home
               </h2>
             </div>
 
-            <div className="space-y-5 text-gray-600">
-              <p className="text-lg leading-relaxed relative pl-4 border-l-2 border-gray-200">
+            <div className="space-y-4 sm:space-y-5 text-gray-600">
+              <p className="text-base sm:text-lg leading-relaxed relative pl-3 sm:pl-4 border-l-2 border-gray-200">
                 CatAdopt is dedicated to rescuing, rehabilitating, and rehoming cats in need.
                 Our passionate team works tirelessly to match loving families with their perfect
                 feline companions, ensuring every cat finds a safe and happy forever home.
               </p>
 
-              <p className="text-lg leading-relaxed relative pl-4 border-l-2 border-gray-200">
+              <p className="text-base sm:text-lg leading-relaxed relative pl-3 sm:pl-4 border-l-2 border-gray-200">
                 With comprehensive care, behavioral assessment, and ongoing support, we make the
                 adoption process smooth and rewarding. Trust us to help you find your purr-fect match!
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 pt-6 sm:pt-8">
               {stats.map((stat, index) => {
                 const Icon = stat.icon;
                 return (
@@ -155,54 +225,6 @@ export const AboutSection = () => {
                   </div>
                 );
               })}
-            </div>
-          </div>
-
-          <div
-            className={`relative transition-all duration-1000 delay-300 ${
-              inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
-            }`}
-          >
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <div className="relative aspect-square bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden shadow-2xl">
-                <svg
-                  className="absolute inset-0 w-full h-full opacity-20 transition-opacity duration-500 group-hover:opacity-30"
-                  viewBox="0 0 400 400"
-                  preserveAspectRatio="none"
-                >
-                  <line
-                    x1="0"
-                    y1="0"
-                    x2="400"
-                    y2="400"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    className="text-gray-400"
-                  />
-                  <line
-                    x1="400"
-                    y1="0"
-                    x2="0"
-                    y2="400"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    className="text-gray-400"
-                  />
-                </svg>
-
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-white rounded-2xl shadow-xl p-6 flex items-center justify-center transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-                <div className="text-center">
-                  <Heart className="w-8 h-8 text-gray-900 mx-auto mb-2 fill-gray-900" />
-                  <div className="text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                    With Love
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

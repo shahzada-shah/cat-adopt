@@ -1,5 +1,5 @@
 import { Heart, Users, Award, Target } from 'lucide-react';
-import { PageTransition } from '../components/PageTransition';
+import { PageTransition } from '../components/ui/PageTransition';
 
 export const AboutPage = () => {
   return (

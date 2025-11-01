@@ -27,13 +27,13 @@
  * @returns {JSX.Element} The complete home page
  */
 
-import { Hero } from '../components/Hero';
-import { AboutSection } from '../components/AboutSection';
-import { TeamSection } from '../components/TeamSection';
-import { FeedbackSection } from '../components/FeedbackSection';
-import { ServicesSection } from '../components/ServicesSection';
-import { AppointmentSection } from '../components/AppointmentSection';
-import { BlogSection } from '../components/BlogSection';
+import { Hero } from '../components/sections/Hero';
+import { AboutSection } from '../components/sections/AboutSection';
+import { TeamSection } from '../components/sections/TeamSection';
+import { FeedbackSection } from '../components/sections/FeedbackSection';
+import { ServicesSection } from '../components/sections/ServicesSection';
+import { AppointmentSection } from '../components/sections/AppointmentSection';
+import { BlogSection } from '../components/sections/BlogSection';
 
 export const HomePage = () => {
   return (

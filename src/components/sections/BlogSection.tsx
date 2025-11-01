@@ -48,6 +48,7 @@ const articles: Article[] = [
     description: 'Seasonal threats to animals are not a myth. Here you will find simple and effective tips on how to protect your pet at any time of the year.',
     category: 'Seasonal Care',
     icon: Heart,
+    imageUrl: '/ad_01.png',
   },
   {
     id: 2,
@@ -55,6 +56,7 @@ const articles: Article[] = [
     description: 'Learn what changes in behavior or appearance may indicate health problems. A timely visit to the veterinarian saves lives.',
     category: 'Health Alerts',
     icon: AlertCircle,
+    imageUrl: '/ad_02.png',
   },
   {
     id: 3,
@@ -62,6 +64,7 @@ const articles: Article[] = [
     description: 'A quick guide to nutrition: which foods improve the health of your ponytail and which are strictly forbidden.',
     category: 'Nutrition',
     icon: Apple,
+    imageUrl: '/ad_03.png',
   },
   {
     id: 4,
@@ -69,6 +72,7 @@ const articles: Article[] = [
     description: 'The tail, ears, and eyes of your pet communicate volumes. Learn to read these signs for a better understanding.',
     category: 'Behavior',
     icon: Heart,
+    imageUrl: '/ad_04.png',
   },
   {
     id: 5,
@@ -76,6 +80,7 @@ const articles: Article[] = [
     description: 'A comprehensive guide to the vaccination schedule and why each shot matters for your puppy\'s long-term health.',
     category: 'Prevention',
     icon: AlertCircle,
+    imageUrl: '/ad_05.png',
   },
   {
     id: 6,
@@ -83,6 +88,7 @@ const articles: Article[] = [
     description: 'As pets age, their needs change. Discover how to provide the best care for your aging companion.',
     category: 'Senior Care',
     icon: Heart,
+    imageUrl: '/ad_06.png',
   },
 ];
 
@@ -205,25 +211,42 @@ export const BlogSection = () => {
                   onMouseLeave={() => setHoveredCard(null)}
                 >
                   <div className="h-full bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-200 group">
-                    {/* Image placeholder with icon */}
-                    <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div
-                          className={`w-24 h-24 bg-white/80 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-xl transition-all duration-500 ${
-                            hoveredCard === article.id ? 'scale-110 rotate-6' : 'scale-100 rotate-0'
-                          }`}
-                        >
-                          <Icon className="w-12 h-12 text-gray-900" />
+                    {/* Image or placeholder with icon */}
+                    <div 
+                      className="relative h-64 bg-gray-200 overflow-hidden"
+                      style={
+                        article.imageUrl
+                          ? {
+                              backgroundImage: `url(${article.imageUrl})`,
+                              backgroundSize: 'cover',
+                              backgroundPosition: 'center',
+                              backgroundRepeat: 'no-repeat',
+                            }
+                          : {
+                              background: 'linear-gradient(to bottom right, rgb(243, 244, 246), rgb(229, 231, 235))',
+                            }
+                      }
+                    >
+                      {!article.imageUrl && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div
+                            className={`w-24 h-24 bg-white/80 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-xl transition-all duration-500 ${
+                              hoveredCard === article.id ? 'scale-110 rotate-6' : 'scale-100 rotate-0'
+                            }`}
+                          >
+                            <Icon className="w-12 h-12 text-gray-900" />
+                          </div>
                         </div>
-                      </div>
+                      )}
 
-                      {/* Decorative diagonal lines */}
-                      <div className="absolute inset-0 opacity-10">
-                        <div className="absolute top-0 left-0 w-full h-full">
-                          <div className="absolute top-0 left-0 w-1 h-full bg-gray-900 origin-top-left rotate-45 translate-x-32" />
-                          <div className="absolute top-0 right-0 w-1 h-full bg-gray-900 origin-top-right -rotate-45 -translate-x-32" />
+                      {!article.imageUrl && (
+                        <div className="absolute inset-0 opacity-10">
+                          <div className="absolute top-0 left-0 w-full h-full">
+                            <div className="absolute top-0 left-0 w-1 h-full bg-gray-900 origin-top-left rotate-45 translate-x-32" />
+                            <div className="absolute top-0 right-0 w-1 h-full bg-gray-900 origin-top-right -rotate-45 -translate-x-32" />
+                          </div>
                         </div>
-                      </div>
+                      )}
 
                       {/* Category badge */}
                       <div className="absolute top-4 left-4">

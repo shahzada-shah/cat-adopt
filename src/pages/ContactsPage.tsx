@@ -1,6 +1,6 @@
 import { Phone, Mail, MapPin, Clock, MessageSquare, Send, Facebook, Instagram, Youtube } from 'lucide-react';
 import { useState } from 'react';
-import { PageTransition } from '../components/PageTransition';
+import { PageTransition } from '../components/ui/PageTransition';
 
 export const ContactsPage = () => {
   const [formData, setFormData] = useState({

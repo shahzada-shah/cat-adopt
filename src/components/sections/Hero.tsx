@@ -1,3 +1,19 @@
+/**
+ * Hero Component
+ *
+ * The main landing section featuring the CatAdopt hero image and call-to-action.
+ * Implements smooth animations, hover effects, and responsive design.
+ *
+ * @component
+ * @returns {JSX.Element} Rendered hero section
+ *
+ * Features:
+ * - Responsive layout for mobile, tablet, and desktop
+ * - Smooth fade-in animations on mount
+ * - Interactive image hover effect with darkened overlay
+ * - Call-to-action buttons for adoption browsing
+ */
+
 import { ArrowRight, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -5,14 +21,15 @@ import { useState, useEffect } from 'react';
 export const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
 
+  // Trigger animations on component mount
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-20 sm:pt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+    <section className="min-h-[90vh] sm:min-h-screen bg-gradient-to-b from-gray-50 to-white pt-20 sm:pt-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           <div className={`space-y-6 sm:space-y-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
             <div
               className={`inline-flex items-center gap-2 bg-gray-900 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-700 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
@@ -58,24 +75,28 @@ export const Hero = () => {
           </div>
 
           <div
-            className={`relative transition-all duration-1000 mt-8 lg:mt-0 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+            className={`relative transition-all duration-1000 mt-6 sm:mt-8 lg:mt-0 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
             style={{ transitionDelay: '400ms' }}
           >
-            <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl sm:rounded-3xl relative overflow-hidden shadow-2xl">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center p-4 sm:p-8">
-                  <div className="w-20 h-20 sm:w-32 sm:h-32 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 animate-pulse-gentle">
-                    <Heart className="w-10 h-10 sm:w-16 sm:h-16 text-white" />
-                  </div>
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">
+            <div 
+              className="group aspect-square rounded-xl sm:rounded-2xl lg:rounded-3xl relative overflow-hidden shadow-xl sm:shadow-2xl bg-gray-200 cursor-pointer transition-all duration-300 touch-manipulation"
+              style={{
+                backgroundImage: 'url(/cat_01.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
+            >
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 flex items-center justify-center transition-all duration-500 ease-out">
+                <div className="text-center p-4 sm:p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out delay-100">
+                  <p className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">
                     Over 5,000 Cats
                   </p>
-                  <p className="text-sm sm:text-base text-gray-600">
+                  <p className="text-sm sm:text-base text-white">
                     Successfully adopted into loving homes
                   </p>
                 </div>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/10 to-transparent"></div>
             </div>
           </div>
         </div>

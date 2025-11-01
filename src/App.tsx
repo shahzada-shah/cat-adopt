@@ -18,11 +18,11 @@
  */
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
-import { FooterDivider } from './components/FooterDivider';
-import { ScrollToTop } from './components/ScrollToTop';
-import { DeveloperCredits } from './components/DeveloperCredits';
+import { Header } from './components/layout/Header';
+import { Footer } from './components/layout/Footer';
+import { FooterDivider } from './components/layout/FooterDivider';
+import { ScrollToTop } from './components/ui/ScrollToTop';
+import { DeveloperCredits } from './components/ui/DeveloperCredits';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
