@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 export const Header = () => {
   const location = useLocation();
-  const isHome = location.pathname === '/';
+  const isHome = location.pathname === '/' || location.pathname === `${import.meta.env.BASE_URL}`;
 
   return (
     <header className="bg-white/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-sm animate-slideDown">

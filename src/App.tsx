@@ -60,7 +60,7 @@ function App() {
     <>
       {isLoading && <Loader onLoadComplete={() => setIsLoading(false)} />}
       
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <div className="min-h-screen" style={{ position: 'relative' }}>
           {/**
            * ScrollToTop Component
