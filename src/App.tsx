@@ -18,11 +18,13 @@
  */
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { FooterDivider } from './components/layout/FooterDivider';
 import { ScrollToTop } from './components/ui/ScrollToTop';
 import { DeveloperCredits } from './components/ui/DeveloperCredits';
+import { Loader } from './components/ui/Loader';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
@@ -30,6 +32,8 @@ import { AppointmentPage } from './pages/AppointmentPage';
 import { ContactsPage } from './pages/ContactsPage';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     /**
      * Router Component (BrowserRouter)
@@ -46,10 +50,13 @@ function App() {
      * - HashRouter: Uses # in URLs, works better for static hosting
      * - MemoryRouter: Keeps history in memory, useful for testing
      */
-    <Router>
-      <div className="min-h-screen">
-        {/**
-         * ScrollToTop Component
+    <>
+      {isLoading && <Loader onLoadComplete={() => setIsLoading(false)} />}
+      
+      <Router>
+        <div className="min-h-screen">
+          {/**
+           * ScrollToTop Component
          *
          * IMPORTANT: This must be inside <Router> but before <Routes>
          *
@@ -169,6 +176,7 @@ function App() {
         <DeveloperCredits />
       </div>
     </Router>
+    </>
   );
 }
 

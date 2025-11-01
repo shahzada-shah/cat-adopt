@@ -81,7 +81,7 @@ export const Hero = () => {
             <div 
               className="group aspect-square rounded-xl sm:rounded-2xl lg:rounded-3xl relative overflow-hidden shadow-xl sm:shadow-2xl bg-gray-200 cursor-pointer transition-all duration-300 touch-manipulation"
               style={{
-                backgroundImage: 'url(/cat_01.png)',
+                backgroundImage: 'url(./cat_01.png)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat'

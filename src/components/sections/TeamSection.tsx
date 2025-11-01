@@ -49,7 +49,7 @@ const teamMembers: TeamMember[] = [
     appointment: '$18',
     specialties: ['Surgery', 'Emergency Care', 'Orthopedics'],
     yearsOfExperience: 7,
-    image: '/doc_01.png',
+    image: './doc_01.png',
   },
   {
     name: 'Olena Koval',
@@ -58,7 +58,7 @@ const teamMembers: TeamMember[] = [
     appointment: '$13',
     specialties: ['General Medicine', 'Preventive Care', 'Diagnostics'],
     yearsOfExperience: 10,
-    image: '/doc_02.png',
+    image: './doc_02.png',
   },
   {
     name: 'Maria Mazur',
@@ -67,7 +67,7 @@ const teamMembers: TeamMember[] = [
     appointment: '$16',
     specialties: ['Skin Conditions', 'Allergies', 'Parasitology'],
     yearsOfExperience: 5,
-    image: '/doc_03.png',
+    image: './doc_03.png',
   },
   {
     name: 'Iryna Melnyk',
@@ -76,7 +76,7 @@ const teamMembers: TeamMember[] = [
     appointment: '$14',
     specialties: ['Avian Medicine', 'Exotic Pets', 'Nutrition'],
     yearsOfExperience: 3,
-    image: '/doc_04.png',
+    image: './doc_04.png',
   },
 ];
 

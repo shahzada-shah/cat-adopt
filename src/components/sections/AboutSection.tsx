@@ -144,7 +144,7 @@ export const AboutSection = () => {
               <div 
                 className="relative aspect-square rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl bg-gray-200"
                 style={{
-                  backgroundImage: 'url(/cat_02.png)',
+                  backgroundImage: 'url(./cat_02.png)',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat'

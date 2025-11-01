@@ -33,7 +33,7 @@
  * </Router>
  */
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export const ScrollToTop = () => {
@@ -51,6 +51,7 @@ export const ScrollToTop = () => {
    * changes, which triggers our useEffect below.
    */
   const location = useLocation();
+  const isFirstRender = useRef(true);
 
   /**
    * useEffect Hook
@@ -96,12 +97,24 @@ export const ScrollToTop = () => {
      * BROWSER SUPPORT:
      * The 'smooth' behavior is supported in all modern browsers.
      * In older browsers, it falls back to instant scrolling automatically.
+     * 
+     * FIRST RENDER BEHAVIOR:
+     * On initial page load, we scroll instantly to prevent any jarring
+     * animation while the loader is showing. On subsequent navigations,
+     * we use smooth scrolling for better UX.
      */
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
+    if (isFirstRender.current) {
+      // First load - instant scroll
+      window.scrollTo(0, 0);
+      isFirstRender.current = false;
+    } else {
+      // Subsequent navigations - smooth scroll
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
 
     /**
      * ALTERNATIVE APPROACHES:

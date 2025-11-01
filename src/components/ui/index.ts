@@ -11,4 +11,5 @@
 export { PageTransition } from './PageTransition';
 export { ScrollToTop } from './ScrollToTop';
 export { DeveloperCredits } from './DeveloperCredits';
+export { Loader } from './Loader';
 
