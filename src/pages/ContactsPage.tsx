@@ -10,6 +10,8 @@ export const ContactsPage = () => {
     subject: '',
     message: '',
   });
+  // Track focused field for potential future UI enhancements (e.g., icon color changes)
+  // @ts-expect-error - focusedField will be used for UI enhancements in future updates
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
 

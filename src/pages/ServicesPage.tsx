@@ -219,7 +219,7 @@ export const ServicesPage = () => {
 
           <div className="text-center p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl">
             <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Activity className="w-6 h-6 text-gray-900" />
+              <Home className="w-6 h-6 text-gray-900" />
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">Clean, Safe Facility</h3>
             <p className="text-xs text-gray-600">

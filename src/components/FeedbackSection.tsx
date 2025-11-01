@@ -1,6 +1,39 @@
+/**
+ * FeedbackSection Component
+ *
+ * Displays customer testimonials in an interactive carousel/slider format.
+ * Shows 1 testimonial on mobile, 2 on tablet, and 3 on desktop.
+ *
+ * KEY FEATURES:
+ * - Responsive design (adapts to screen size)
+ * - Smooth transitions between testimonials
+ * - Intersection Observer for scroll-based animations
+ * - Circular navigation (loops from last to first)
+ * - Manual navigation via arrows or dots
+ * - Prevents rapid clicking with transition locks
+ *
+ * @component
+ */
+
 import { ChevronLeft, ChevronRight, Star, Heart } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
+/**
+ * Testimonial Type Definition
+ *
+ * Defines the structure of each testimonial object.
+ * Using TypeScript interfaces ensures data consistency and provides autocomplete.
+ *
+ * @interface Testimonial
+ * @property {number} id - Unique identifier for the testimonial
+ * @property {string} name - Customer's name
+ * @property {number} rating - Star rating (1-5)
+ * @property {string} text - The testimonial content/review
+ * @property {string} [avatar] - Optional: URL to customer's avatar image
+ * @property {string} [adoptionType] - Optional: Type of adoption (e.g., "First-time adopter")
+ *
+ * The ? makes properties optional, meaning they can be undefined.
+ */
 interface Testimonial {
   id: number;
   name: string;
@@ -56,12 +89,86 @@ const testimonials: Testimonial[] = [
 ];
 
 export const FeedbackSection = () => {
+  /**
+   * STATE MANAGEMENT
+   *
+   * React's useState hook allows components to have memory between renders.
+   * Each state variable triggers a re-render when updated.
+   */
+
+  /**
+   * currentIndex: Tracks which testimonial is currently being shown
+   * - Starts at 0 (first testimonial)
+   * - Changes when user clicks arrows or dots
+   * - Wraps around: after last testimonial, goes back to first
+   */
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  /**
+   * isTransitioning: Prevents rapid clicking during animations
+   * - true: Animation in progress, ignore clicks
+   * - false: Ready for next interaction
+   * - Automatically resets after 800ms (animation duration)
+   *
+   * WHY THIS IS NEEDED:
+   * Without this lock, users could click the next button 10 times rapidly,
+   * queuing up 10 transitions and creating janky, confusing animations.
+   */
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  /**
+   * inView: Tracks if this section is visible in the viewport
+   * - false: Section is off-screen (above or below current view)
+   * - true: Section has entered the viewport
+   * - Used to trigger entrance animations when user scrolls to this section
+   *
+   * This creates a "reveal on scroll" effect commonly seen in modern websites.
+   */
   const [inView, setInView] = useState(false);
+
+  /**
+   * sectionRef: Reference to the section's DOM element
+   * - useRef creates a mutable reference that persists across re-renders
+   * - We need this to tell the IntersectionObserver which element to watch
+   * - <HTMLDivElement> specifies this ref points to a div element
+   * - null is the initial value before the ref is attached
+   *
+   * REFS VS STATE:
+   * - State: Changes trigger re-renders (use for UI updates)
+   * - Refs: Changes don't trigger re-renders (use for DOM access)
+   */
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * INTERSECTION OBSERVER EFFECT
+   *
+   * This effect sets up viewport visibility detection.
+   * When the section scrolls into view, animations are triggered.
+   *
+   * HOW IT WORKS:
+   * 1. Create an IntersectionObserver that watches for visibility
+   * 2. When section enters viewport, set inView to true
+   * 3. This triggers CSS animations that make content fade/slide in
+   * 4. Clean up observer when component unmounts
+   */
   useEffect(() => {
+    /**
+     * Create the observer
+     *
+     * PARAMETERS:
+     * 1. Callback function: Runs when visibility changes
+     *    - [entry]: Destructures first element from entries array
+     *    - entry.isIntersecting: true when element enters viewport
+     *
+     * 2. Options object:
+     *    - threshold: 0.2 means trigger when 20% of element is visible
+     *    - Lower values (0.1) trigger sooner, higher values (0.5) trigger later
+     *
+     * WHY threshold: 0.2?
+     * - Triggers animation before element is fully visible
+     * - Creates smooth "reveal as you scroll" effect
+     * - Prevents content from suddenly appearing
+     */
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -71,13 +178,60 @@ export const FeedbackSection = () => {
       { threshold: 0.2 }
     );
 
+    /**
+     * Start observing the section
+     *
+     * We check if sectionRef.current exists because:
+     * - On first render, the ref might not be attached yet
+     * - TypeScript requires this null check for type safety
+     */
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
 
+    /**
+     * Cleanup function
+     *
+     * This function runs when:
+     * - Component unmounts (removed from page)
+     * - Effect dependencies change (in this case, never, since deps is [])
+     *
+     * WHY CLEANUP IS IMPORTANT:
+     * - Observers keep running even after component is removed
+     * - This causes memory leaks and performance issues
+     * - Always disconnect observers when done
+     *
+     * The return statement in useEffect is specifically for cleanup.
+     */
     return () => observer.disconnect();
   }, []);
 
+  /**
+   * NAVIGATION HANDLERS
+   *
+   * These functions handle clicking the previous/next arrow buttons.
+   * They implement circular navigation with transition locking.
+   */
+
+  /**
+   * Handle Previous Button Click
+   *
+   * Moves to the previous testimonial with wraparound.
+   *
+   * LOGIC BREAKDOWN:
+   * 1. Check if animation is already running (if yes, do nothing)
+   * 2. Lock further clicks by setting isTransitioning = true
+   * 3. Update index to previous testimonial:
+   *    - If at first item (index 0), wrap to last item
+   *    - Otherwise, decrease index by 1
+   * 4. After 800ms, unlock clicks by setting isTransitioning = false
+   *
+   * THE MATH:
+   * prev === 0 ? testimonials.length - 1 : prev - 1
+   * - If currently at index 0, go to last index (length - 1)
+   * - Example: If we have 6 items (0-5), go to index 5
+   * - Otherwise, simply go back one: prev - 1
+   */
   const handlePrevious = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
@@ -85,6 +239,25 @@ export const FeedbackSection = () => {
     setTimeout(() => setIsTransitioning(false), 800);
   };
 
+  /**
+   * Handle Next Button Click
+   *
+   * Moves to the next testimonial with wraparound.
+   *
+   * LOGIC BREAKDOWN:
+   * Similar to handlePrevious but in the opposite direction.
+   *
+   * THE MATH:
+   * prev >= testimonials.length - 1 ? 0 : prev + 1
+   * - If at last index (length - 1), wrap to first index (0)
+   * - Example: If at index 5 (last of 6), go to index 0
+   * - Otherwise, advance one: prev + 1
+   *
+   * WHY 800ms TIMEOUT?
+   * - Matches the CSS transition duration (800ms)
+   * - Ensures animation completes before allowing next click
+   * - Prevents overlapping animations that look glitchy
+   */
   const handleNext = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
@@ -92,6 +265,38 @@ export const FeedbackSection = () => {
     setTimeout(() => setIsTransitioning(false), 800);
   };
 
+  /**
+   * VISIBLE TESTIMONIALS CALCULATION
+   *
+   * Creates an array of 3 testimonials to display:
+   * - Position 1: Current testimonial
+   * - Position 2: Next testimonial
+   * - Position 3: Testimonial after that
+   *
+   * On mobile, only position 1 is shown (CSS hides positions 2-3)
+   * On tablet, positions 1-2 are shown
+   * On desktop, all 3 positions are shown
+   *
+   * THE MODULO OPERATOR (%):
+   * The % operator gives us the remainder after division.
+   * We use it to create circular/wraparound behavior.
+   *
+   * EXAMPLES:
+   * If we have 6 testimonials (indices 0-5) and currentIndex is 5:
+   * - Position 1: testimonials[5] = 5
+   * - Position 2: (5 + 1) % 6 = 6 % 6 = 0 (wraps to start!)
+   * - Position 3: (5 + 2) % 6 = 7 % 6 = 1
+   *
+   * WHY THIS WORKS:
+   * - 6 % 6 = 0 (anything divided by itself = remainder 0)
+   * - 7 % 6 = 1 (7 ÷ 6 = 1 remainder 1)
+   * - This creates seamless looping without if statements
+   *
+   * If currentIndex is 0:
+   * - Position 1: 0
+   * - Position 2: 1 % 6 = 1
+   * - Position 3: 2 % 6 = 2
+   */
   const visibleTestimonials = [
     testimonials[currentIndex],
     testimonials[(currentIndex + 1) % testimonials.length],

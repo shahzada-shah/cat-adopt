@@ -22,12 +22,10 @@ const developers: Developer[] = [
 
 export const DeveloperCredits = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseEnter = () => {
-    setIsHovering(true);
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
@@ -35,7 +33,6 @@ export const DeveloperCredits = () => {
   };
 
   const handleMouseLeave = () => {
-    setIsHovering(false);
     timeoutRef.current = setTimeout(() => {
       setIsExpanded(false);
     }, 2000);

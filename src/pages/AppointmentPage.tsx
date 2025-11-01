@@ -1,7 +1,50 @@
+/**
+ * AppointmentPage Component
+ *
+ * A comprehensive appointment booking form for scheduling visits to the cat adoption center.
+ * Features include form validation, focused field highlighting, and success confirmation.
+ *
+ * KEY FEATURES:
+ * - Multi-field form with validation
+ * - Dynamic field focus states (icons change color)
+ * - Date picker (prevents past dates)
+ * - Time slot selector
+ * - Service type dropdown
+ * - Success state after submission
+ * - Auto-reset after 3 seconds
+ *
+ * @component
+ */
+
 import { Send, Calendar, User, Phone, MessageSquare, CheckCircle2, Clock, MapPin, Mail } from 'lucide-react';
 import { useState } from 'react';
 
 export const AppointmentPage = () => {
+  /**
+   * FORM STATE MANAGEMENT
+   *
+   * We use three separate state variables to manage the form:
+   * 1. formData - Stores all input values
+   * 2. focusedField - Tracks which field is currently active
+   * 3. isSubmitted - Controls success message display
+   */
+
+  /**
+   * formData: Object containing all form field values
+   *
+   * WHY AN OBJECT?
+   * - Keeps related data together
+   * - Easy to reset all fields at once
+   * - Simple to pass to API calls later
+   * - Mirrors the structure of what we'll send to backend
+   *
+   * INITIAL VALUES:
+   * All fields start empty (empty strings)
+   * This is better than null because:
+   * - Prevents "uncontrolled to controlled" warnings
+   * - Works seamlessly with input value props
+   * - Empty string is falsy, so easy to check if filled
+   */
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -11,18 +54,100 @@ export const AppointmentPage = () => {
     service: '',
     message: '',
   });
+
+  /**
+   * focusedField: Tracks which input is currently focused
+   *
+   * WHY WE NEED THIS:
+   * - Changes icon color when user clicks in a field
+   * - Provides visual feedback that field is active
+   * - Creates a more polished, interactive feel
+   *
+   * TYPE: string | null
+   * - string: The name of the focused field (e.g., "name", "email")
+   * - null: No field is focused (user clicked outside form)
+   */
   const [focusedField, setFocusedField] = useState<string | null>(null);
+
+  /**
+   * isSubmitted: Controls the success message display
+   *
+   * FLOW:
+   * - false: Shows the form
+   * - true: Shows success message
+   * - After 3s: Resets to false and clears form
+   *
+   * This creates a "submit -> confirm -> reset" cycle
+   */
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  /**
+   * Handle Form Submission
+   *
+   * This function runs when user clicks "Book Appointment" button.
+   *
+   * PROCESS:
+   * 1. Prevent default form submission (would reload page)
+   * 2. Show success message
+   * 3. After 3 seconds, reset form and hide success message
+   *
+   * @param e - Form event object from React
+   *
+   * WHY e.preventDefault()?
+   * By default, HTML forms reload the page when submitted.
+   * We prevent this because:
+   * - We're handling submission with JavaScript
+   * - We want to stay on the same page
+   * - We'll send data via API call (not implemented yet)
+   *
+   * NOTE FOR FUTURE:
+   * This is where you'd add API call to actually book the appointment:
+   * await fetch('/api/appointments', { method: 'POST', body: JSON.stringify(formData) })
+   */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
+
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({ name: '', phone: '', email: '', date: '', time: '', service: '', message: '' });
     }, 3000);
   };
 
+  /**
+   * Handle Input Changes
+   *
+   * This function updates formData whenever user types in any field.
+   * It's used by all form inputs (text, email, date, select, textarea).
+   *
+   * @param e - Change event from input/textarea/select element
+   *
+   * HOW IT WORKS:
+   * 1. Get the name and value from the input that changed
+   * 2. Update formData while keeping all other fields unchanged
+   *
+   * THE SPREAD OPERATOR (...):
+   * ...prev copies all existing formData properties
+   * Then [e.target.name]: e.target.value overwrites just the changed field
+   *
+   * EXAMPLE:
+   * If formData is { name: 'John', email: '', phone: '' }
+   * And user types in email field:
+   * 1. ...prev copies: { name: 'John', email: '', phone: '' }
+   * 2. [e.target.name]: 'john@email.com' updates email
+   * 3. Result: { name: 'John', email: 'john@email.com', phone: '' }
+   *
+   * BRACKET NOTATION: [e.target.name]
+   * This is "computed property name" syntax
+   * - e.target.name is the input's name attribute (e.g., "email")
+   * - Brackets make it dynamic, so it updates the right field
+   * - Without brackets, it would literally create a field called "e.target.name"
+   *
+   * TYPE UNION:
+   * HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+   * This means the event can come from any of these three element types.
+   * TypeScript checks that we're accessing properties that exist on all three.
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({
       ...prev,
